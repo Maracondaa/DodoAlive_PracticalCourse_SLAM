@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="dodo_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.12 0.04"/> </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.8 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="laser"/>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser"/>
+    <origin xyz="0.0 0.0 0.05" rpy="0 0 3.14159"/>
+  </joint>
+
+  <link name="nicla_imu_frame"/>
+
+  <joint name="nicla_imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="nicla_imu_frame"/>
+    <origin xyz="-0.013 0.0 -0.014" rpy="3.14159 0 0"/>
+  </joint>
+
+  <link name="camera_mount"/>
+
+  <joint name="camera_mount_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_mount"/>
+    <origin xyz="0.014 0.0 -0.015" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
+  <xacro:sensor_d435i parent="camera_mount" name="realsense">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:sensor_d435i>
+
+</robot>

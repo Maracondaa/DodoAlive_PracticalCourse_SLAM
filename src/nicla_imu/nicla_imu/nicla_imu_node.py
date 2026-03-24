@@ -208,7 +208,7 @@ class NiclaImuNode(Node):
             imu_msg.angular_velocity.y = sample[8] * gyro_scale
             imu_msg.angular_velocity.z = sample[9] * gyro_scale
 
-            imu_msg.angular_velocity_covariance = [
+            imu_msg.linear_accelerationy_covariance = [
                 0.001, 0.0, 0.0,
                 0.0, 0.001, 0.0,
                 0.0, 0.0, 0.001
@@ -219,7 +219,7 @@ class NiclaImuNode(Node):
                 0.0, 0.0, 0.1
             ]
         else:
-            imu_msg.angular_velocity_covariance = [
+            imu_msg.linear_acceleration_covariance = [
                 -1.0, 0.0, 0.0,
                 0.0, 0.0, 0.0,
                 0.0, 0.0, 0.0
